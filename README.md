@@ -149,17 +149,3 @@ Contributions or fixes for these are welcome — see below.
 
 This project has no explicit license in the repository. If you want to use or share it, add a `LICENSE` file (e.g., MIT) or update it to your preferred license.
 
-
----
-
-If you'd like, I can also:
-
-- Add a simple `.env` support helper and update `get_connection.py` to read it ✅
-- Fix the `add_customer` generation/creation bugs and add tests ✅
-
-Tell me which one you'd like me to implement next. ✨
-
-
-TODO:- 
-Add Logging 
-add Unit Test on top of it.

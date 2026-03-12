@@ -18,8 +18,8 @@ class AddCustomer:
                 return
             account_details = """
                         INSERT INTO account_details (
-                        full_name, acc_number,address,email)
-                        VALUES (%s,%s, %s, %s)"""
+                        full_name,address,email)
+                        VALUES (%s,%s, %s)"""
             self.cursor.execute(account_details, [name, address, email])
             self.cursor.execute("SELECT LAST_INSERT_ID()")
             acc_number = self.cursor.fetchone()
@@ -31,12 +31,7 @@ class AddCustomer:
                             INSERT INTO balance_info (
                             acc_number)
                             VALUES (%s)"""
-            self.cursor.execute(
-                balance_info,
-                [
-                    acc_number,
-                ],
-            )
+            self.cursor.execute(balance_info,[acc_number,],)
         except Exception:
             logging_file.logging.exception("error")
         finally:
@@ -48,7 +43,7 @@ class AddCustomer:
         while attempt <= 3:
             email = input("enter new email: ")
             query = """SELECT * FROM account_details 
-WHERE email = %s"""
+                        WHERE email = %s"""
             self.cursor.execute(
                 query,
                 [
@@ -58,7 +53,7 @@ WHERE email = %s"""
             if self.cursor.fetchone():
                 if attempt < 3:
                     print(
-f"""attempt {attempt} failed!!!\nemail already exists. use another email!""")
+                        f"""attempt {attempt} failed!!!\nemail already exists. use another email!""")
                     attempt += 1
                 else:
                     print("3 failed attempts.")
